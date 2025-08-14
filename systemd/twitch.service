@@ -1,0 +1,15 @@
+[Unit]
+Description=Stream to twitch
+Wants=network-online.target tpr.service
+After=network.target network-online.target tpr.service
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/tpr/ffmpeg/
+EnvironmentFile=/etc/ffmpeg/twitch
+ExecStart=bash /srv/tpr/ffmpeg/twitch.sh
+User=streamer
+Group=streamer
+
+[Install]
+WantedBy=multi-user.target

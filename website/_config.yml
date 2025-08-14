@@ -1,0 +1,11 @@
+title: kute pona
+description: >-
+  Host of toki pona themed sounds.
+
+lawa:
+- nimi: toki pona radio
+  linluwi: /tpr
+
+remote_theme: pona-la/kule-lipu
+
+exclude: [README.md, Gemfile, Gemfile.lock]

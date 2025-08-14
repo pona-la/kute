@@ -1,0 +1,45 @@
+---
+layout: lipu
+title: toki pona radio
+description: The radio all in Toki Pona
+---
+<script src="{{ 'assets/js/icecast-metadata-player-1.17.12.main.min.js' | absolute_url }}"></script>
+<script>
+  const onMetadata = (metadata) => {
+    if (metadata.TITLE)
+      document.getElementById("metadata").innerHTML = metadata.TITLE;
+    else
+      document.getElementById("metadata").innerHTML = "Listening to Toki Pona Radio";
+  };
+  const onLoad = () => {
+    document.getElementById("button").innerHTML = '<i class="fas fa-spinner fa-spin fa-2xl"></i>';
+  };
+  const onPlay = () => {
+    document.getElementById("button").innerHTML = '<i class="fas fa-square fa-2xl"></i>';
+  };
+  const onStop = () => {
+    document.getElementById("button").innerHTML = '<i class="fas fa-play fa-2xl"></i>';
+    document.getElementById("metadata").innerHTML = "Click play!"
+  };
+  const player =
+    new IcecastMetadataPlayer(
+      "https://kute.pona.la/stream/tpr",
+      { onMetadata, onLoad, onPlay, onStop, metadataTypes: ["ogg"] },
+    );
+  function buttonHandler() {
+    switch(player.state) {
+      case "loading":
+      case "stopping":
+      case "playing":
+        player.stop();
+        break;
+      default:
+        player.play();
+    } 
+  }
+</script>
+<div>
+  <img class="w-100" src="{{ '/assets/sitelen/tpr-big.svg' | absolute_url }}"/>
+</div>
+<button id="button" class="button" onclick="buttonHandler();"><i class="fas fa-play fa-2xl"></i></button>
+<span id="metadata">Click play!</span>

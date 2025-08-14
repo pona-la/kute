@@ -1,0 +1,14 @@
+[Unit]
+Description=Figure out what is playing right now
+Wants=network-online.target tpr.service
+After=network.target network-online.target tpr.service
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/tpr/images/
+ExecStart=bash nowplaying.sh
+User=streamer
+Group=streamer
+
+[Install]
+WantedBy=multi-user.target

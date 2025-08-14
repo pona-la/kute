@@ -1,0 +1,14 @@
+[Unit]
+Description=Stream audio
+Wants=network-online.target icecast2.service
+After=network.target network-online.target icecast2.service
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/tpr/ezstream/
+ExecStart=ezstream -c config.xml
+User=streamer
+Group=streamer
+
+[Install]
+WantedBy=multi-user.target
