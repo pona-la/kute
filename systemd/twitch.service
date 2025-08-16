@@ -10,6 +10,8 @@ EnvironmentFile=/etc/ffmpeg/twitch
 ExecStart=bash /srv/tpr/ffmpeg/twitch.sh
 User=streamer
 Group=streamer
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

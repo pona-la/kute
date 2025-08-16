@@ -9,6 +9,8 @@ WorkingDirectory=/srv/tpr/ezstream/
 ExecStart=ezstream -c config.xml
 User=streamer
 Group=streamer
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

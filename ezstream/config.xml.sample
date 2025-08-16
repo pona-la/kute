@@ -14,11 +14,11 @@
         Transport protocol:
         HTTP (default), HTTPS (implies <tls>required</tls>), ICY, RoarAudio
         -->
-      <protocol>HTTP</protocol>
+      <protocol>HTTPS</protocol>
       <!-- Server address -->
       <hostname>kute.pona.la</hostname>
       <!-- Server port (default: 8000) -->
-      <port>8000</port>
+      <port>443</port>
 
       <!-- Login user (default: "source") -->
       <user>source</user>
@@ -34,14 +34,18 @@
         "required" when configuring TLS to secure streaming over untrusted
         networks.
         -->
-      <tls>May</tls>
+      <!--
+      <tls>Required</tls>
+      -->
 
       <!--
         Configure allowed cipher suites for TLS other than the libshout
         default.
         See openssl(1)/ciphers(1) for details.
         -->
+      <!--
       <tls_cipher_suite>HIGH:!RSA:!SHA:!DH:!aNULL:!eNULL:!TLSv1</tls_cipher_suite>
+      -->
 
       <!--
         Directory to use for server certificate verification in "hash format".
@@ -86,7 +90,7 @@
       <!-- <name>default</name> -->
 
       <!-- Mount point on server -->
-      <mountpoint>/tpr.ogg</mountpoint>
+      <mountpoint>/stream/tpr</mountpoint>
 
       <!-- Name of the intake entry to use (default: "default") -->
       <intake>Playlist</intake>
@@ -104,11 +108,11 @@
       <format>Ogg</format>
 
       <!-- Encoder name (defined below) to use for (re)encoding -->
-      <encoder>OggEnc-Q1.5</encoder>
+      <encoder>Opus-VBR96</encoder>
 
       <!-- Various other informational settings -->
       <stream_name>toki pona radio</stream_name>
-      <stream_url>http://kute.pona.la/tpr</stream_url>
+      <stream_url>https://kute.pona.la/tpr</stream_url>
       <stream_genre>Various</stream_genre>
       <stream_description>Radio all in Toki Pona Language</stream_description>
       <stream_quality>1.5</stream_quality>
