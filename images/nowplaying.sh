@@ -1,7 +1,12 @@
 prev=""
 while true
 do
-    song=`curl -s http://localhost:8000/status-json.xsl | jq -r .icestats.source.title`
+    #song=`curl -s http://localhost:8000/status-json.xsl | jq -r .icestats.source.title`
+    json=`ffprobe -loglevel error -show_entries stream_tags:format_tags -of json https://kute.pona.la/stream/tpr`
+    title=`echo $json | jq -r .streams[0].tags.title`
+    artist=`echo $json | jq -r .streams[0].tags.artist`
+    song=`echo "$artist - $title"`
+
     if [[ $song == $prev ]] ; then
         echo -n .
     elif [[ $song == "null" ]] ; then

@@ -1,0 +1,45 @@
+name: Build and deploy app
+
+on:
+  push:
+  pull_request:
+# permissions:
+#   contents: write
+
+jobs:
+  build:
+    name: Build and deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Build app
+        run: |
+          cd website
+          npm i
+          npm run build
+
+      # If the app builds successfully, and is not a PR:
+      # Deploy to production
+      - name: Deploy with ssh
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.SSH_DEPLOY_IP }}
+          username: ${{ secrets.SSH_DEPLOY_USER }}
+          key: ${{ secrets.SSH_DEPLOY_KEY }}
+          script: |
+            cd /srv/tpr/ &&
+            git pull &&
+            cd website &&
+            npm i &&
+            npm run build
