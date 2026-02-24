@@ -27,19 +27,3 @@ jobs:
           cd website
           npm i
           npm run build
-
-      # If the app builds successfully, and is not a PR:
-      # Deploy to production
-      - name: Deploy with ssh
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: appleboy/ssh-action@v1.1.0
-        with:
-          host: ${{ secrets.SSH_DEPLOY_IP }}
-          username: ${{ secrets.SSH_DEPLOY_USER }}
-          key: ${{ secrets.SSH_DEPLOY_KEY }}
-          script: |
-            cd /srv/tpr/ &&
-            git pull &&
-            cd website &&
-            npm i &&
-            npm run build
