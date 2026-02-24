@@ -1,0 +1,29 @@
+name: Build and deploy app
+
+on:
+  push:
+  pull_request:
+# permissions:
+#   contents: write
+
+jobs:
+  build:
+    name: Build and deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Build app
+        run: |
+          cd website
+          npm i
+          npm run build

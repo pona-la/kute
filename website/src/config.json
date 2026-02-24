@@ -1,0 +1,10 @@
+{
+  "hostname": "kute.pona.la",
+  "title": "kute.pona.la: Toki Pona radio",
+  "description": "Listen to the best Toki Pona music, 24/7",
+  "url_goatcounter": "https://kute-pona-la.goatcounter.com",
+  "url_github": "https://github.com/pona-la/kute/",
+
+  "use_navbar": false,
+  "use_language_toggle": false
+}

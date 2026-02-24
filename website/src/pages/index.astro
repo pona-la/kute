@@ -1,0 +1,27 @@
+---
+import "selo-components/common.css"; // has to be above site-specific css
+
+import Player from "@/components/Player.svelte";
+import "@/global.css";
+import { Embed, Layout } from "selo-components";
+import EmbedTwitch from "@/components/EmbedTwitch.astro";
+---
+
+<Layout
+  title={"kute.pona.la: Toki Pona radio"}
+  description={"Listen to the best Toki Pona music, 24/7"}
+>
+  <h2>Listen in the browser:</h2>
+  <Player client:only="svelte" />
+  <p>
+    Protip: <a href="https://www.videolan.org/vlc/">VLC</a> can open <b
+      >https://kute.pona.la/stream/tpr</b
+    > as a network stream!
+  </p>
+  <div>
+    <h2>Or on Youtube:</h2>
+    <Embed id="qgHZmeqH6GU" />
+    <h2>Or on Twitch:</h2>
+    <EmbedTwitch id="maponapitokipona" />
+  </div>
+</Layout>

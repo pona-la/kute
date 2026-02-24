@@ -112,7 +112,7 @@
 
       <!-- Various other informational settings -->
       <stream_name>toki pona radio</stream_name>
-      <stream_url>https://kute.pona.la/tpr</stream_url>
+      <stream_url>https://kute.pona.la</stream_url> <!-- Update if we get 2+ streams -->
       <stream_genre>Various</stream_genre>
       <stream_description>Radio all in Toki Pona Language</stream_description>
       <stream_quality>1.5</stream_quality>

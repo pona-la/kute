@@ -1,8 +1,10 @@
 # kute.pona.la
 
+![Radio architecture](architecture.svg)
+
 ## Icecast2
 
-We use icecast without a proxy, which means the following configuration options need to be set:
+We use icecast without a proxy, which means the following configuration options need to be set in `/etc/icecast2/icecast.xml`:
 ```xml
 <icecast>
     <listen-socket>
@@ -31,14 +33,12 @@ We use icecast without a proxy, which means the following configuration options 
 </icecast>
 ```
 
-We also host the website through icecast. To build it, run `bundler<ruby-version> exec jekyll build` in the website directory. On the side of icecast, set the following config options for the website to work:
+We also host the website through icecast. To build it, run `npm i && npm run build` in the website directory. On the side of icecast, set the following config options for the website to work:
 
 ```xml
 <icecast>
     <paths>
-        <webroot>/srv/tpr/website/_site</webroot>
-        <alias source="/" destination="/index.html"/>
-        <alias source="/tpr" destination="/tpr.html"/>
+        <webroot>/srv/tpr/website/dist</webroot>
     </paths>
 </icecast>
 ```
